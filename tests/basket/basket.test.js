@@ -64,6 +64,39 @@ describe('serializeBasketItemsToJson', () => {
             new BasketItem(events[0], 1),
             new BasketItem(events[1], 2)
         ]
+
+        const itemsSerializedToJson = [
+            {
+                event: {
+                    id: 1,
+                    name: 'A Night At The Proms',
+                    ticketPrice: 2500.00,
+                    totalTickets: 2500,
+                    ticketsRemaining: 2500
+                },
+                ticketCount: 1
+            },
+            {
+                event: {
+                    id: 3,
+                    name: 'Rage Against The Machine',
+                    ticketPrice: 35.00,
+                    totalTickets: 2500,
+                    ticketsRemaining: 2500
+                },
+                ticketCount: 2
+            }
+        ]
+
+        const serializedItems = basket.serializeBasketItemsToJson(items)
+
+        //expect(serializedItems).not.toBe(itemsSerializedToJson)
+        expect(serializedItems).toEqual(itemsSerializedToJson)
     })
 })
 
+describe('searchBasket', () => [
+    test('Only returns event that match the search query', () => {
+        
+    })
+])
