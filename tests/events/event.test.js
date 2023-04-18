@@ -36,6 +36,12 @@ describe('createEvent', () => {
         expect(() => createEvent(1, 55.00, 200)).toThrow(new InvalidEventNameError("Event name cannot exceed 200 characters"))
     })
 
+    test('Throws an error if name characters exceed 200', () => {
+        const name = 'veryLongName'.repeat(20).substring(0, 201)
+
+        expect(() => createEvent(name, 55.00, 200)).toThrow(new InvalidEventNameError("Event name cannot exceed 200 characters"))
+    })
+
     test('Throws an error if typeof price is not a number', () => {
         expect(() => createEvent('Davido Show', '12.00', 200)).toThrow(new InvalidEventPriceError("Event price must be more or equal to 0"))
     })
