@@ -154,7 +154,6 @@ describe('getBasketItem', () => {
     
         items = [
             new BasketItem(events[0], 1),
-            new BasketItem(events[1], 4),
             new BasketItem(events[2], 2),
         ];
     })
@@ -164,6 +163,14 @@ describe('getBasketItem', () => {
 
         const basketItem = basket.getBasketItem(items, events[0])
         
-        expect(basketItem).toBeTruthy()
+        //expect(basketItem).toBeTruthy()
+        expect(basketItem).not.toBeNull()
+    })
+
+    test('Returns falsy if event does not exist in the basket', () => {
+        const basketItem = basket.getBasketItem(items, events[1])
+    
+        //expect(basketItem).toBeFalsy()
+        expect(basketItem).toBeNull()
     })
 })
