@@ -140,3 +140,30 @@ describe('searchBasket', () => {
         expect(foundItems).not.toContain(items[1])
     })
 })
+
+describe('getBasketItem', () => {
+    let events = []
+    let items = []
+
+    beforeEach(() => {
+        events = [
+            new Event(1, "A Night At The Proms", 2500.00, 2500, 2500),
+            new Event(2, "Taylor Swift", 50.00, 5500, 2500),
+            new Event(3, "Rage Against The Machine", 35.00, 2500, 2500),
+        ];
+    
+        items = [
+            new BasketItem(events[0], 1),
+            new BasketItem(events[1], 4),
+            new BasketItem(events[2], 2),
+        ];
+    })
+
+
+    test('Returns truthy if event exists in the basket', () => {
+
+        const basketItem = basket.getBasketItem(items, events[0])
+        
+        expect(basketItem).toBeTruthy()
+    })
+})
