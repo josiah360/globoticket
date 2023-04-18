@@ -1,4 +1,5 @@
-const { Event, getTagLine } = require('../../js/events/event')
+const { Event, getTagLine, createEvent } = require('../../js/events/event')
+const { InvalidEventNameError, InvalidEventPriceError } = require('../../js/error-handling/exceptions')
 
 describe('getTagLine', () => {
     test('returns Event Sold Out when there are no tickets left', () => {
@@ -30,3 +31,16 @@ describe('getTagLine', () => {
     })
 })
 
+describe('createEvent', () => {
+    test('Throws an error if typeof name is not a string', () => {
+        expect(() => createEvent(1, 55.00, 200)).toThrow(new InvalidEventNameError("Event name cannot exceed 200 characters"))
+    })
+
+    test('Throws an error if typeof price is not a number', () => {
+        expect(() => createEvent('Davido Show', '12.00', 200)).toThrow(new InvalidEventPriceError("Event price must be more or equal to 0"))
+    })
+
+    test('Throws an error if typeof availableTickets is not a number', () => {
+        expect(() => createEvent('Davido Show', 12.00, '200')).toThrow(new InvalidEventPriceError("Event tickets must be more than 0"))
+    })
+})
