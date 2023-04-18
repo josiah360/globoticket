@@ -95,8 +95,48 @@ describe('serializeBasketItemsToJson', () => {
     })
 })
 
-describe('searchBasket', () => [
+describe('searchBasket', () => {
     test('Only returns event that match the search query', () => {
-        
+        const events = [
+            new Event(1, "A Night At The Proms", 2500.00, 2500, 2500),
+            new Event(2, "Taylor Swift", 50.00, 5500, 2500),
+            new Event(3, "Rage Against The Machine", 35.00, 2500, 2500),
+        ];
+    
+        const items = [
+            new BasketItem(events[0], 1),
+            new BasketItem(events[1], 4),
+            new BasketItem(events[2], 2),
+        ];
+
+        const foundItems = basket.searchBasket(items, 'THE')
+
+        const expectedItems = [
+            {
+                event: {
+                    id: 1,
+                    name: 'A Night At The Proms',
+                    ticketPrice: 2500.00,
+                    totalTickets: 2500,
+                    ticketsRemaining: 2500
+                },
+                ticketCount: 1
+            },
+            {
+                event: {
+                    id: 3,
+                    name: 'Rage Against The Machine',
+                    ticketPrice: 35.00,
+                    totalTickets: 2500,
+                    ticketsRemaining: 2500
+                },
+                ticketCount: 2
+            }
+        ]
+
+        expect(foundItems).toContain(items[0])
+        expect(foundItems).toContain(items[2])
+
+        expect(foundItems).not.toContain(items[1])
     })
-])
+})
