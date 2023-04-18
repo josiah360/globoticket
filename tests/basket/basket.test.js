@@ -1,6 +1,7 @@
 const basket = require("../../js/basket/basket");
 const { Event } = require("../../js/events/event");
 const { BasketItem } = require("../../js/basket/basketitem");
+const { User } = require('../../js/users/users')
 
 
 describe('calculateTotal', () => {
@@ -35,5 +36,34 @@ describe('calculateTotal', () => {
     
         expect(total).toBeCloseTo(1970.00, 2)
     });
+})
+
+describe('showAdverts', () => {
+    test('Does not show advert for premium users',() => {
+        let user = new User(1, 'Test User')
+        user.isPremium = true
+
+        expect(basket.showAdverts(user)).toBe(false)
+    })
+
+    test('Does not show advert for premium users',() => {
+        let user = new User(1, 'Test User')
+
+        expect(basket.showAdverts(user)).toBe(true)
+    })
+})
+
+describe('serializeBasketItemsToJson', () => {
+    test('Basket items are serialized correctly', () => {
+        const events = [
+            new Event(1, "A Night At The Proms", 2500.00, 2500, 2500),
+            new Event(3, "Rage Against The Machine", 35.00, 2500, 2500)
+        ];
+
+        const items = [
+            new BasketItem(events[0], 1),
+            new BasketItem(events[1], 2)
+        ]
+    })
 })
 
