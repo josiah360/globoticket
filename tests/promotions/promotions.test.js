@@ -22,6 +22,8 @@ describe('generateReferralCode', () => {
 
         const referralCode = generateReferralCode(657)
 
-        expect(referralCode).toBe('#FRIEND-#657-#12345')
+        expect(referralCode).toBe('#FRIEND-#345-#657')
+
+        expect(randomMock).toHaveBeenCalled()
     })
 })
