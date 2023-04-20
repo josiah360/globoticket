@@ -1,6 +1,6 @@
 // const users = require("../../js/users/users");
 const account = require("../../js/users/account/account");
-// const purchaseHistory = require("../../js/users/account/purchaseHistory/purchaseHistory")
+const purchaseHistory = require("../../js/users/account/purchaseHistory/purchaseHistory")
 // jest.unmock("../../js/users/account/account");
 jest.unmock("../../js/users/account/account")
 
