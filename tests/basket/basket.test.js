@@ -54,7 +54,7 @@ describe('showAdvert',() => {
 
 describe('serializeBasketItems', () => {
     test('Test if two objects are the same', () => {
-        const event1 = new Event(1, 'Timeless Concert', 14.00, 100, 0)
+    const event1 = new Event(1, 'Timeless Concert', 14.00, 100, 0)
     const event2 = new Event(2, 'Buju Live On Stage', 16.00, 120, 15)
     const event3 = new Event(3, 'Made In Lagos Show', 45.00, 90, 17)
 
@@ -103,4 +103,20 @@ describe('serializeBasketItems', () => {
         
     ])
     })
+})
+
+describe("searchBasket", () => {
+    const event1 = new Event(1, 'The Timeless Concert', 14.00, 100, 0)
+    const event2 = new Event(2, 'Buju Live On Stage', 16.00, 120, 15)
+    const event3 = new Event(3, 'The Made In Lagos Show', 45.00, 90, 17)
+
+    const items = [
+        new BasketItem(event1, 5),
+        new BasketItem(event2, 3),
+        new BasketItem(event3, 7),
+    ]
+
+    const foundItem = basket.searchBasket(items, 'time')
+
+    expect(foundItem).toContain(items[0])
 })
