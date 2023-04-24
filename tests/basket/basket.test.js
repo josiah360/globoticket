@@ -44,11 +44,11 @@ describe('showAdvert',() => {
     test('returns falsy if user is not premium',( ) => {
         user.isPremium = true
 
-        expect(basket.showAdverts(user)).toBeFalsy()
+        expect(basket.showAdverts(user)).toBe(false)
     })
 
     test('returns truthy if user is premium', () => {
-        expect(basket.showAdverts(user)).toBeTruthy()
+        expect(basket.showAdverts(user)).toBe(true)
     })
 })
 
@@ -106,17 +106,36 @@ describe('serializeBasketItems', () => {
 })
 
 describe("searchBasket", () => {
-    const event1 = new Event(1, 'The Timeless Concert', 14.00, 100, 0)
-    const event2 = new Event(2, 'Buju Live On Stage', 16.00, 120, 15)
-    const event3 = new Event(3, 'The Made In Lagos Show', 45.00, 90, 17)
+    test('Returns basket item if query string matches item name', () => {
+        const event1 = new Event(1, 'The Timeless Concert', 14.00, 100, 0)
+        const event2 = new Event(2, 'Buju Live On Stage', 16.00, 120, 15)
+        const event3 = new Event(3, 'The Made In Lagos Show', 45.00, 90, 17)
 
-    const items = [
-        new BasketItem(event1, 5),
-        new BasketItem(event2, 3),
-        new BasketItem(event3, 7),
-    ]
+        const items = [
+            new BasketItem(event1, 5),
+            new BasketItem(event2, 3),
+            new BasketItem(event3, 7),
+        ]
 
-    const foundItem = basket.searchBasket(items, 'time')
+        const foundItem = basket.searchBasket(items, 'THE')
 
-    expect(foundItem).toContain(items[0])
+        expect(foundItem).toContain(items[0])
+        expect(foundItem).toContain(items[2])
+    })
+})
+
+describe('getBasketItem', () => {
+    test('Returns truthy if basket item exists', () => {
+        const event1 = new Event(1, 'The Timeless Concert', 14.00, 100, 0)
+        const event2 = new Event(2, 'Buju Live On Stage', 16.00, 120, 15)
+        const event3 = new Event(3, 'The Made In Lagos Show', 45.00, 90, 17)
+
+        const items = [
+            new BasketItem(event1, 5),
+            new BasketItem(event2, 3),
+            new BasketItem(event3, 7),
+        ]
+
+        expect(basket.getBasketItem(items, event1)).toBeTruthy()
+    })
 })
