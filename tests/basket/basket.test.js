@@ -1,6 +1,7 @@
 const basket = require("../../js/basket/basket");
 const { Event } = require("../../js/events/event");
 const { BasketItem } = require("../../js/basket/basketitem");
+const { User } = require('../../js/users/users')
 
 describe('calculateTotal', () => {
     let events = [];
@@ -33,3 +34,10 @@ describe('calculateTotal', () => {
     });
 })
 
+describe('showAdvert',() => {
+    test('returns truthy if user is not premium',( ) => {
+        const user = new User(1, 'Josiah')
+
+        expect(basket.showAdverts(user)).toBeFalsy()
+    })
+})
