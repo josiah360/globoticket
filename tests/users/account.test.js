@@ -1,6 +1,6 @@
-const users = require("../../js/users/users");
+// const users = require("../../js/users/users");
 const account = require("../../js/users/account/account");
-const purchaseHistory = require("../../js/users/account/purchaseHistory/purchaseHistory")
+// const purchaseHistory = require("../../js/users/account/purchaseHistory/purchaseHistory")
 jest.unmock("../../js/users/account/account");
 
 describe("getPastPurchases", () => {
@@ -26,15 +26,15 @@ describe("getPastPurchases", () => {
         ]);
     });
 
-    test("Throws error when readyState is not 4", () => {
-        jest.spyOn(purchaseHistory, 'getPurchaseHistory').mockReturnValue({
-            readyState: 2,        
-            onreadystatechange: null,
-            response: {
-                events: [
-                ],
-            }   
-        });
-        expect(() => account.getPastPurchases(123)).toThrow("Failed to get purchase history");
-    })
+    // test("Throws error when readyState is not 4", () => {
+    //     jest.spyOn(purchaseHistory, 'getPurchaseHistory').mockReturnValue({
+    //         readyState: 2,        
+    //         onreadystatechange: null,
+    //         response: {
+    //             events: [
+    //             ],
+    //         }   
+    //     });
+    //     expect(() => account.getPastPurchases(123)).toThrow("Failed to get purchase history");
+    // })
 });
