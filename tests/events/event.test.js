@@ -38,7 +38,7 @@ describe('getTagLine', () => {
 
         const tagLine = getTagLine(event, 10, false)
 
-        expect(tagLine).toBe(`on't miss out, purchase your ticket now!`)
+        expect(tagLine).toBe(`Don't miss out, purchase your ticket now!`)
     })
 })
 
