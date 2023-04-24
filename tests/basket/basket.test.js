@@ -125,17 +125,31 @@ describe("searchBasket", () => {
 })
 
 describe('getBasketItem', () => {
-    test('Returns truthy if basket item exists', () => {
-        const event1 = new Event(1, 'The Timeless Concert', 14.00, 100, 0)
-        const event2 = new Event(2, 'Buju Live On Stage', 16.00, 120, 15)
-        const event3 = new Event(3, 'The Made In Lagos Show', 45.00, 90, 17)
+    let events = []
+    let items  = []
 
-        const items = [
-            new BasketItem(event1, 5),
-            new BasketItem(event2, 3),
-            new BasketItem(event3, 7),
+    beforeEach(() => {
+        events = [
+            new Event(1, 'The Timeless Concert', 14.00, 100, 0),
+            new Event(2, 'Buju Live On Stage', 16.00, 120, 15),
+            new Event(3, 'The Made In Lagos Show', 45.00, 90, 17),
+            new Event(4, 'Feelz in Abuja', 45.00, 90, 17)
         ]
 
-        expect(basket.getBasketItem(items, event1)).toBeTruthy()
+        items = [
+            new BasketItem(events[0], 5),
+            new BasketItem(events[1], 3),
+            new BasketItem(events[2], 7)
+        ]
+    })
+
+    test('Returns truthy if basket item exists', () => {
+
+        expect(basket.getBasketItem(items, events[0])).toBeTruthy()
+    })
+
+    test('Returns falsy if basket item does not exist', () => {
+
+        expect(basket.getBasketItem(items, events[3])).toBeFalsy()
     })
 })
