@@ -51,3 +51,56 @@ describe('showAdvert',() => {
         expect(basket.showAdverts(user)).toBeTruthy()
     })
 })
+
+describe('serializeBasketItems', () => {
+    test('Test if two objects are the same', () => {
+        const event1 = new Event(1, 'Timeless Concert', 14.00, 100, 0)
+    const event2 = new Event(2, 'Buju Live On Stage', 16.00, 120, 15)
+    const event3 = new Event(3, 'Made In Lagos Show', 45.00, 90, 17)
+
+    const items = [
+        new BasketItem(event1, 5),
+        new BasketItem(event2, 3),
+        new BasketItem(event3, 7),
+    ]
+
+    const serializeditems = basket.serializeBasketItemsToJson(items)
+
+    expect(serializeditems).toEqual([
+        {
+            event: {
+                id: 1,
+                name: 'Timeless Concert',
+                ticketPrice: 14.00,
+                totalTickets: 100,
+                ticketsRemaining: 0,
+                date: undefined
+            },
+            ticketCount: 5
+        },
+        {
+            event: {
+                id: 2,
+                name: 'Buju Live On Stage',
+                ticketPrice: 16.00,
+                totalTickets: 120,
+                ticketsRemaining: 15,
+                date: undefined
+            },
+            ticketCount: 3
+        },
+        {
+            event: {
+                id: 3,
+                name: 'Made In Lagos Show',
+                ticketPrice: 45.00,
+                totalTickets: 90,
+                ticketsRemaining: 17,
+                date: undefined
+            },
+            ticketCount: 7
+        }
+        
+    ])
+    })
+})
