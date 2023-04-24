@@ -35,9 +35,19 @@ describe('calculateTotal', () => {
 })
 
 describe('showAdvert',() => {
-    test('returns truthy if user is not premium',( ) => {
-        const user = new User(1, 'Josiah')
+    let user;
+
+    beforeEach(() => {
+        user = new User(1, 'Josiah')
+    })
+
+    test('returns falsy if user is not premium',( ) => {
+        user.isPremium = true
 
         expect(basket.showAdverts(user)).toBeFalsy()
+    })
+
+    test('returns truthy if user is premium', () => {
+        expect(basket.showAdverts(user)).toBeTruthy()
     })
 })
