@@ -1,3 +1,4 @@
+const { InvalidEventNameError, InvalidEventPriceError } = require('../../js/error-handling/exceptions')
 const { Event, getTagLine, createEvent } = require('../../js/events/event')
 
 describe('getTagLine', () => {
@@ -45,15 +46,15 @@ describe('getTagLine', () => {
 
 describe('createEvent', () => {
     test('Throws error if price is not type of string || name.length > 200', () =>{
-        expect(() => createEvent(200, 40.00, 100)).toThrow("Event name cannot exceed 200 characters")
+        expect(() => createEvent(200, 40.00, 100)).toThrow(new InvalidEventNameError("Event name cannot exceed 200 characters"))
     })
 
     test('Throws error if price is not type of number || is less than 0', () => {
-        expect(() => createEvent('Timeless', -1, 100)).toThrow("Event price must be more or equal to 0")
+        expect(() => createEvent('Timeless', -1, 100)).toThrow(new InvalidEventPriceError("Event price must be more or equal to 0"))
     })
 
     test('Throws error if available ticket is not a number || is less than 1', () => {
-        expect(() => createEvent('Timeless', 40.00, 0)).toThrow("Event tickets must be more than 0")
+        expect(() => createEvent('Timeless', 40.00, 0)).toThrow(new InvalidEventPriceError("Event tickets must be more than 0"))
     })
 })
 
