@@ -3,7 +3,7 @@ const { getEvents } = require('../../js/events/search')
 
 describe('getEvents', () => {
     test('Returns events that meets the search predicate', () => {
-        const mockSearchPredicate = jest.fn(x => x.price > 10.00)
+        const mockSearchPredicate = jest.fn(e => e.ticketPrice > 10.00)
 
         const event1 = new Event(1, 'The Beachside', 12.00, 100, 0)
         const event2 = new Event(3, 'Eko Hotel Vibe', 50.00, 100, 0)
