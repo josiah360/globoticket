@@ -17,7 +17,7 @@ function __getPurchaseHistory() {
                     price: 120.00
                 },
                 {
-                    name: "Folks dance party",
+                    name: "Folk dance party!",
                     tickets: 3,
                     price: 75.00
                 }
