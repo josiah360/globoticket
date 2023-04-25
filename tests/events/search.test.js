@@ -27,5 +27,17 @@ describe('getEvents', () => {
             event2,
             event3
         ])
+
+        expect(mockSearchPredicate).toHaveBeenCalled()
+
+        expect(mockSearchPredicate.mock.calls.length).toBe(events.length)
+
+        expect(mockSearchPredicate.mock.calls[0][0]).toBe(events[0])
+        expect(mockSearchPredicate.mock.calls[1][0]).toBe(events[1])
+        expect(mockSearchPredicate.mock.calls[2][0]).toBe(events[2])
+        expect(mockSearchPredicate.mock.calls[3][0]).toBe(events[3])
+        expect(mockSearchPredicate.mock.calls[4][0]).toBe(events[4])
+        expect(mockSearchPredicate.mock.calls[5][0]).toBe(events[5])
+        expect(mockSearchPredicate.mock.calls[6][0]).toBe(events[6])
     })
 })
