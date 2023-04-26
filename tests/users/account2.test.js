@@ -1,6 +1,7 @@
 const account = require('../../js/users/account/account')
+const purchaseHistory = require('../../js/users/account/purchaseHistory/purchaseHistory')
 
-jest.mock('../../js/users/account/purchaseHistory/purchaseHistory')
+jest.unmock('../../js/users/account/account')
 
 describe("getPastPurchases", () => {
     test("test past purchase history", () => {
@@ -23,5 +24,20 @@ describe("getPastPurchases", () => {
                 price: 75.00,
             }
         ]);
+    })
+
+    test("throws error if fails to get purchase history", () => {
+        const mockPastPurchases = jest.spyOn(purchaseHistory, 'getPurchaseHistory')
+        .mockReturnValue({
+            readyState: 2,
+            onreadystatechange: null,
+            response: {
+                events: [],
+            }
+        })
+
+        expect(() => account.getPastPurchases(123)).toThrow(new Error("Failed to get purchase history"))
+
+        expect(mockPastPurchases).toHaveBeenCalled()
     })
 })
