@@ -106,3 +106,41 @@ describe("serializeBasketToJson", () => {
     ])
 
 })
+
+describe("searchBasket", () => {
+    test("Tests if basket contains query item", () => {
+        const event1 = new Event(1, "Timeless Concert", 39.00, 100, 46)  
+        const event2 = new Event(2, "Made In Lagos", 42.00, 90, 32)
+        const event3 = new Event(3, "Burna Live", 52.00, 75, 16)
+
+        const items = [
+            new BasketItem(event1, 5),
+            new BasketItem(event2, 2),
+            new BasketItem(event3, 3)
+        ]
+
+        const foundItems = basket.searchBasket(items, 'o')
+
+        expect(foundItems).toContain(items[0])
+        expect(foundItems).toContain(items[1])
+    })
+})
+
+describe("getBasketItem", () => {
+    test("Returns truthy if there is an event in the basket", () => {
+        const event1 = new Event(1, "Timeless Concert", 39.00, 100, 46)  
+        const event2 = new Event(2, "Made In Lagos", 42.00, 90, 32)
+        const event3 = new Event(3, "Burna Live", 52.00, 75, 16)
+
+        const items = [
+            new BasketItem(event1, 5),
+            new BasketItem(event2, 2),
+            new BasketItem(event3, 3)
+        ]
+
+        const foundItem = basket.getBasketItem(items, event1)
+
+        expect(foundItem).toBeTruthy()
+
+    })
+})
