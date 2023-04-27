@@ -135,12 +135,26 @@ describe("getBasketItem", () => {
         const items = [
             new BasketItem(event1, 5),
             new BasketItem(event2, 2),
-            new BasketItem(event3, 3)
         ]
 
         const foundItem = basket.getBasketItem(items, event1)
 
         expect(foundItem).toBeTruthy()
 
+    })
+
+    test("Returns false if there is no event in the basket", () => {
+        const event1 = new Event(1, "Timeless Concert", 39.00, 100, 46)  
+        const event2 = new Event(2, "Made In Lagos", 42.00, 90, 32)
+        const event3 = new Event(3, "Burna Live", 52.00, 75, 16)
+
+        const items = [
+            new BasketItem(event1, 5),
+            new BasketItem(event2, 2),
+        ]
+
+        const foundItem = basket.getBasketItem(items, event3)
+
+        expect(foundItem).toBeFalsy()
     })
 })
