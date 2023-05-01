@@ -16,6 +16,7 @@ describe("getEvents", () => {
         ]
 
         expect(getEvents(events, searchPredicateMock)).toContain(event1)
+        expect(searchPredicateMock).toHaveBeenCalled()
 
     })
 })
