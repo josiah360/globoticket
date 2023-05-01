@@ -9,4 +9,6 @@ describe("generateReferralCode", () => {
         expect(referralCode).toContain('#1234')
         expect(referralCode).toMatch(/^#FRIEND-#\d{3}-#\d{4}$/)
     })
+
+    
 })

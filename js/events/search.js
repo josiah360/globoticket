@@ -5,3 +5,4 @@ function getEvents(events, searchPredicate) {
 module.exports = {
     getEvents
 }
+
