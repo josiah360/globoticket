@@ -1,6 +1,7 @@
 const { getPastPurchases } = require('../../js/users/account/account')
+const purchaseHistory = require('../../js/users/account/purchaseHistory/purchaseHistory')
 
-jest.mock('../../js/users/account/purchaseHistory/purchaseHistory')
+jest.unmock('../../js/users/account/account')
 
 describe("getPastPurchases", () => {
     test("returns purchased events if ready state is 4", () => {
