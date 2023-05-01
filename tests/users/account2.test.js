@@ -26,4 +26,18 @@ describe("getPastPurchases", () => {
             ]
         )
     })
+
+    test("Throws error if readyState is not 4", () => {
+        jest.spyOn(purchaseHistory, 'getPurchaseHistory').mockReturnValue({
+            readyState: 2,
+            onreadystatechange: null,
+            response: {
+                events: []
+            }
+        })
+
+        const userId = '123'
+
+        expect(() => getPastPurchases(userId)).toThrow(new Error("Failed to get purchase history"))
+    })
 })
